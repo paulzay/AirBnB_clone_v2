@@ -50,6 +50,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
+        """deletes specified obj"""
         if obj != None:
             print(obj)
             del FileStorage.__objects[f"State.{obj.id}"]
