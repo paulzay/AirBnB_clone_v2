@@ -23,3 +23,8 @@ class Place(BaseModel, Base):
     amenity_ids = []
     user = relationship('User', back_populates='places')
     cities = relationship('City', back_populates='places')
+
+    if os.environment['HBNB_TYPE_STORAGE'] == db:
+        reviews = relationship('Review', cascade='all, delete')
+    else:
+        pass
