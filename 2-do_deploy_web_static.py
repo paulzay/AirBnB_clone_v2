@@ -17,7 +17,7 @@ def do_deploy(archive_path):
     put("{archive_path}", "/tmp/")
     run("mkdir -p /data/web_static/releases/{fl}")
     # decompress the tgz
-    run("tar -xvf /tmp/{fl}.tgz -C /data/web_static/releases/{fl}")
+    run("tar -xzf /tmp/{fl}.tgz -C /data/web_static/releases/{fl}")
     # delete the archive from server
     run("sudo rm {filename}.tgz")
     run("mv /data/web_static/releases/filename/web_static/* \
