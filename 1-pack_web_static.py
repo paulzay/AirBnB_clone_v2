@@ -10,7 +10,7 @@ def do_pack():
     timestring = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     filename = '{}{}'.format("web_static_", timestring)
     local(f"tar -cvf {filename}.tar web_static/")
-    archive_name = '{}{}'.format(filename,".tar")
+    archive_name = '{}{}'.format(filename, ".tar")
     # local(f"echo {archive_name}")
     archive_path = f"versions/{archive_name}"
 
