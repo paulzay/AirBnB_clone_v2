@@ -11,6 +11,7 @@ def do_pack():
     filename = '{}{}'.format("web_static_", timestring)
     local(f"tar -cvzf versions/{filename}.tgz web_static")
     archive_name = '{}{}'.format(filename, ".tgz")
+    # local(f"echo {archive_name}")
     archive_path = f"versions/{archive_name}"
 
     if archive_name:
