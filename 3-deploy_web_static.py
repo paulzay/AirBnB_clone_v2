@@ -44,6 +44,7 @@ def do_deploy(archive_path):
 
 
 def deploy():
+    """comment"""
     archive_path = do_pack()
     if not os.path.exists(archive_path):
         return False
