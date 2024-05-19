@@ -40,6 +40,7 @@ def do_deploy(archive_path):
         print("New version deployed!")
         return True
     except ValueError:
+        return False
 
 
 def deploy():
