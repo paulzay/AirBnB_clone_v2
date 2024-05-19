@@ -1,14 +1,15 @@
 #!/usr/bin/python3
 """documentation"""
-from fabric.api import run, put
+from fabric.api import run, put, env
 import os
+
+
+env.hosts = ['18.234.192.140', '100.27.12.25']
+env.user = 'ubuntu'
 
 
 def do_deploy(archive_path):
     """documentation block"""
-    env.hosts = ['18.234.192.140', '100.27.12.25']
-    env.user = 'ubuntu'
-
     if not os.path.exists(archive_path):
         return False
     try:
