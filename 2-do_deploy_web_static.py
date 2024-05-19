@@ -14,10 +14,10 @@ def do_deploy(archive_path):
         parts = archive_path.split("/")
         filename = parts[-1]
         decomp = filename.split(".")
-        fl = decomp[-2]
+        fl = decomp[0]
 
         put(archive_path, "/tmp/")
-
+        run("mkdir -p /data/web_static/releases/{}".format(fl))
         # decompress the tgz
         run("tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(filename, fl))
         # delete the archive from server
