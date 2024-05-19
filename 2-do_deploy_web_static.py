@@ -13,28 +13,16 @@ def do_deploy(archive_path):
     if not os.path.exists(archive_path):
         return False
     try:
-        parts = archive_path.split("/")
-        filename = parts[-1]
-        decomp = filename.split(".")
-        fl = decomp[0]
+        file_n = archive_path.split("/")[-1]
+        no_ext = file_n.split(".")[0]
         path = "/data/web_static/releases/"
-
-        put(archive_path, "/tmp/")
-        run("mkdir -p /data/web_static/releases/{}".format(fl))
-        # # decompress the tgz
-        run("tar -xzf /tmp/{} -C \
-            /data/web_static/releases/{}".format(filename, fl))
-        # # delete the archive from server
-        run("sudo rm /tmp/{}".format(filename))
-        run("mv /data/web_static/releases/{}/web_static/* \
-            /data/web_static/releases/{}/".format(filename, fl))
-        run("rm -rf /data/web_static/releases/{}/web_static".format(fl))
-        # # delete symbolic link
-        run("rm -rf /data/web_static/current")
-        # # create new symbolic link
-        run('ln -s /data/web_static/releases/{}/ \
-            /data/web_static/current'.format(fl))
-        print("New version deployed!")
-        return True
+        put(archive_path, '/tmp/')
+        run('mkdir -p {}{}/'.format(path, no_ext))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(file_n, path, no_ext))
+        run('rm /tmp/{}'.format(file_n))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
+        run('rm -rf {}{}/web_static'.format(path, no_ext))
+        run('rm -rf /data/web_static/current')
+        run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
     except ValueError:
         return False
