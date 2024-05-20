@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """documentation"""
-from fabric.api import put, env, cd, sudo, task, run, local
-import os
+import datetime
+from fabric.api import put, env, run, local
+import os.path
 env.hosts = ['18.234.192.140', '100.27.12.25']
 env.user = 'ubuntu'
 
@@ -9,6 +10,7 @@ env.user = 'ubuntu'
 def do_pack():
     """function doc"""
     local("mkdir -p versions")
+
     timestring = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     filename = '{}{}'.format("web_static_", timestring)
     local(f"tar -cvzf versions/{filename}.tgz web_static")
@@ -26,6 +28,7 @@ def do_deploy(archive_path):
         return False
     try:
         file_n = archive_path.split("/")[-1]
+        local('echo {file_n}')
         no_ext = file_n.split(".")[0]
         path = "/data/web_static/releases/"
         put(archive_path, '/tmp/')
@@ -51,3 +54,4 @@ def deploy():
 
     retval = do_deploy(archive_path)
     return retval
+# versions/web_static_20240520132631.tgz

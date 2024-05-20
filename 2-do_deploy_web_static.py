@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """documentation"""
-from fabric.api import run, put, env
-import os
+from fabric.api import run, put, env, local
+import os.path
 
 
 env.hosts = ['18.234.192.140', '100.27.12.25']
@@ -15,6 +15,7 @@ def do_deploy(archive_path):
     try:
         file_n = archive_path.split("/")[-1]
         no_ext = file_n.split(".")[0]
+
         path = "/data/web_static/releases/"
         put(archive_path, '/tmp/')
         run('mkdir -p {}{}/'.format(path, no_ext))
