@@ -22,7 +22,7 @@ def hello_again():
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
     """c is fun"""
-    return f"C {escape(text.replace("_", " "))}"
+    return "C" + text.replace("_", " ")
 
 
 if __name__ == "__main__":
