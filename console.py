@@ -10,6 +10,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+from shlex import split
 
 
 class HBNBCommand(cmd.Cmd):
@@ -115,16 +116,24 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
-        if not args:
+        args = args.split(' ')
+        obj = eval("{}()".format(args[0]))
+        if not args[0]:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
-        print(new_instance.id)
-        storage.save()
+        for i in range(1, len(args)):
+            args[i] = args[i].replace("=", ' ')
+            att = split(args[i])
+            att[1] = att[1].replace('_', ' ')
+
+            var = eval(att[1])
+            att[1] = var
+
+            if type(att[1]) is not tuple:
+                setattr(obj, att[0], att[1])
 
     def help_create(self):
         """ Help information for the create method """
