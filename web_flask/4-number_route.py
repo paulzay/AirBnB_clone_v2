@@ -35,7 +35,7 @@ def python_is(text):
 def only_nums(n):
     """n"""
     if type(n) is int:
-        return f"{n} is a number"
+        return "{:d} is a number".format(n)
 
 
 if __name__ == "__main__":
