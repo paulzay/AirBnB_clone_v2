@@ -21,13 +21,13 @@ def hello_again():
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
     """c is fun"""
-    return "C" + text.replace("_", " ")
+    return "C " + text.replace("_", " ")
 
 
 @app.route('/python/<text>', strict_slashes=False)
 def python_is(text):
     """py is cool"""
-    return "Python" + text.replace("_", " ")
+    return "Python " + text.replace("_", " ")
 
 
 if __name__ == "__main__":
