@@ -21,14 +21,14 @@ def hello_again():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
-    """c"""
-    return f"C {escape(text.replace("_", " "))}"
+    """c is fun"""
+    return "C " + text.replace("_", " ")
 
 
 @app.route('/python/<text>', strict_slashes=False)
 def python_is(text):
-    """py"""
-    return f"Python {escape(text.replace("_", " "))}"
+    """py is cool"""
+    return "Python " + text.replace("_", " ")
 
 
 @app.route('/number<n>', strict_slashes=False)
