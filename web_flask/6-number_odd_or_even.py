@@ -21,36 +21,35 @@ def hello_again():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
-    """docs"""
-    return f"C {escape(text.replace("_", " "))}"
+    """c is fun"""
+    return "C " + text.replace("_", " ")
 
 
 @app.route('/python/<text>', strict_slashes=False)
 def python_is(text):
-    """docs"""
-    return f"Python {escape(text.replace("_", " "))}"
+    """py is cool"""
+    return "Python " + text.replace("_", " ")
 
 
 @app.route('/number<n>', strict_slashes=False)
 def only_nums(n):
-    """docs"""
+    """n"""
     if type(n) is int:
-        return f"{n} is a number"
+        return "{:d} is a number".format(n)
 
 
 @app.route('/number_template/<n>', strict_slashes=False)
 def num_template(n):
     """docs"""
-    if type(n) is int:
-        return render_template('5-number.html', n=n)
+    return render_template('5-number.html', n=n)
 
 
 @app.route('/number_odd_or_even/<n>', strict_slashes=False)
 def odd_even(n):
     """docs"""
     if type(n) is int:
-        return render_template('6-number_odd_or_even.html', n)
+        return render_template('6-number_odd_or_even.html', n=n)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port='5000')
