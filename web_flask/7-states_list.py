@@ -6,13 +6,16 @@ from models import storage
 app = Flask(__name__)
 
 
-@app.route('/states_list')
-def home():
-    return render_template('7-states_list.html')
+@app.route('/states_list', strict_slashes=False)
+def states():
+    """docs"""
+    states = storage.all('State')
+    return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
 def close():
+    """docs"""
     storage.close()
 
 
