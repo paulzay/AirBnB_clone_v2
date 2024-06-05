@@ -7,9 +7,14 @@ import os
 
 
 class Amenity(BaseModel, Base):
-    if os.environ["HBNB_MYSQL_DB"] == "db":
+    """ The Amenity class, contains state ID and name"""
+    if os.environ["HBNB_TYPE_STORAGE"] == "db":
         __tablename__ = 'amenities'
         name = Column(String(128), nullable=False)
         place_amenities = relationship('Place', back_populates="amenities")
     else:
         name = ""
+
+    def __init__(self, *args, **kwargs):
+        """initializes Amenity"""
+        super().__init__(*args, **kwargs)

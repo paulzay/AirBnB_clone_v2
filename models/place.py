@@ -8,10 +8,10 @@ import os
 
 class Place(BaseModel, Base):
     """ A place to stay """
-    if os.environ["HBNB_MYSQL_DB"] == "db":
+    if os.environ["HBNB_TYPE_STORAGE"] == "db":
         __tablename__ = 'places'
-        city_id = Column(Integer(60),ForeignKey('cities.id'), nullable=False)
-        user_id = Column(Integer(60),ForeignKey('users.id'), nullable=False)
+        city_id = Column(String(60),ForeignKey('cities.id'), nullable=False)
+        user_id = Column(String(60),ForeignKey('users.id'), nullable=False)
         name = Column(String(128), nullable=False)
         description = Column(String(1024), nullable=False)
         number_rooms = Column(Integer, nullable=False, default=0)
