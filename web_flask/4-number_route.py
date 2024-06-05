@@ -26,12 +26,12 @@ def c_is_fun(text):
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python_is(text):
+def python_is(text='is cool'):
     """py is cool"""
     return "Python " + text.replace("_", " ")
 
 
-@app.route('/number/<int:n>', strict_slashes=False)
+@app.route('/number/', strict_slashes=False)
 def only_nums(n):
     """n"""
     if type(n) is int:
