@@ -2,7 +2,6 @@
 """docs"""
 
 from flask import Flask
-from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -32,7 +31,7 @@ def python_is(text):
     return "Python " + text.replace("_", " ")
 
 
-@app.route('/number<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def only_nums(n):
     """n"""
     if type(n) is int:

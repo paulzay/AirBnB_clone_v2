@@ -31,14 +31,14 @@ def python_is(text):
     return "Python " + text.replace("_", " ")
 
 
-@app.route('/number<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def only_nums(n):
     """n"""
     if type(n) is int:
         return "{:d} is a number".format(n)
 
 
-@app.route('/number_template/<n>', strict_slashes=False)
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def num_template(n):
     """docs"""
     return render_template('5-number.html', n=n)
